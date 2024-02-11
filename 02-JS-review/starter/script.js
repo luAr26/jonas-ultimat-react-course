@@ -142,3 +142,119 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+const books = getBooks();
+
+const book = getBook(3);
+// const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+//   book;
+// genres;
+
+// // const primaryGenre = genres[0];
+// const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+// primaryGenre;
+// secondaryGenre;
+// otherGenres;
+
+// const newGenres = [...genres, "horror"];
+// console.log(newGenres);
+// const updatedBook = {
+//   ...book,
+//   // Add new property
+//   moviePublicationDate: "12.01.2022",
+//   // Update property
+//   pages: 1210,
+// };
+// console.log(updatedBook);
+// const summary = `${title} was published on ${
+//   publicationDate.split("-")[0]
+// } and has ${pages} pages. And to not forget, it was written by ${author}.`;
+// console.log(summary);
+
+// const stringPages =
+//   pages > 1000 ? "Over one thousand" : "Less than a thousand.";
+// console.log(stringPages);
+
+// function getYear(date) {
+//   return date.split("-")[0];
+// }
+
+// const arrowGetYear = (date) => date.split("-")[0];
+
+// const yearPublished = arrowGetYear(publicationDate);
+// yearPublished;
+// console.log(hasMovieAdaptation && "has movie adaptation.");
+
+// // falsy: 0, null, undefined, "", NaN
+// console.log(true && "Some string");
+// console.log(false && "other string");
+
+// console.log(true || "Some other string");
+// console.log(false || NaN);
+
+// const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+// console.log(spanishTranslation);
+
+// const count = book.reviews.librarything?.reviewsCount ?? "no data";
+// count;
+
+// const getTotalReviewCount = (book) => {
+//   const goodreads = book.reviews.goodreads.reviewsCount;
+//   const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+//   return goodreads + librarything;
+// };
+// console.log(getTotalReviewCount(book));
+
+/*
+const bookTitles = data.map((book) => book.title);
+bookTitles;
+
+const longBooks = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.translations.korean)
+  .map((book) => book.title);
+longBooks;
+console.log(longBooks);
+
+const pagesOfBook = books.reduce((sum, book) => sum + book.pages, 0);
+pagesOfBook;
+
+const x = [2, 3, 10, 283, 23, 18];
+const sorted = x.slice().sort((a, b) => b - a);
+x;
+
+const sortedByPages = [...books].sort((a, b) => a.pages - b.pages);
+console.log(sortedByPages);
+
+// Add book object to array
+const newBook = {
+  title: "Harry Potter and the chamber of secrets",
+  author: "J.K. Rollings",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+// Delete a book
+const booksAfterDelete = books.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+// `Update a book object in array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 200 } : book
+);
+console.log(booksAfterUpdate); */
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((response) => response.json())
+//   .then((json) =>
+//     console.log(
+//       json.filter((todo) => todo.userId === 1).map((todo) => todo.title)
+//     )
+//   );
+
+async function getTodos() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await response.json();
+  return data;
+}
+
+const todos = await getTodos();
+console.log(todos);
