@@ -3,6 +3,7 @@ import './App.css';
 import Bill from './components/Bill';
 import SelectPercentage from './components/SelectPercentage';
 import BillSummary from './components/BillSummary';
+import Button from './components/Button';
 
 function App() {
   const [bill, setBill] = useState(0);
@@ -29,7 +30,7 @@ function App() {
     setFriendTip(value);
   }
 
-  function resetTipCalculator() {
+  function handleReset() {
     setBill(0);
     setYourTip("");
     setFriendTip("");
@@ -45,8 +46,11 @@ function App() {
       <SelectPercentage id={friendTipInputId} tip={friendTip} onChangeYourTip={handleChangeFriendTip}>
         How did your friend like the service?
       </SelectPercentage>
-      <BillSummary bill={bill} totalTip={totalTip} />
-      <button className="button-19" onClick={resetTipCalculator}>Reset</button>
+      {bill > 0 && 
+      <>
+        <BillSummary bill={bill} totalTip={totalTip} />
+        <Button onReset={handleReset}>Reset</Button>
+      </>}
     </div>
   );
 }
