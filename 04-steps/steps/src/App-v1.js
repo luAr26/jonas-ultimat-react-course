@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-// import DateCounter from "./components/DateCounter";
-import Button from "./components/Button";
-import StepMessage from "./components/StepMessage";
+import DateCounter from "./components/DateCounter";
 
 const messages = [
   "Learn React ⚛️",
@@ -24,7 +22,7 @@ const App = () => {
   }
   return (
     <>
-      {/* <DateCounter /> */}
+      <DateCounter />
       <button
         className="close"
         onClick={() => setIsOpen((currentIsOpenValue) => !currentIsOpenValue)}
@@ -38,15 +36,20 @@ const App = () => {
             <div className={step >= 2 ? "active" : ""}>2</div>
             <div className={step === 3 ? "active" : ""}>3</div>
           </div>
-          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
-          
+          <p className="message">{messages[step - 1]}</p>
           <div className="buttons">
-            <Button bgColor="#7950f2" textColor="#fff" onClick={handlePrevious}>
-              <span>👈</span> Previous
-            </Button>
-            <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
-              Next <span>👉</span>
-            </Button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handlePrevious}
+            >
+              Previous
+            </button>
+            <button
+              style={{ backgroundColor: "#7950f2", color: "#fff" }}
+              onClick={handleNext}
+            >
+              Next
+            </button>
           </div>
         </div>
       )}

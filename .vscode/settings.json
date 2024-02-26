@@ -1,4 +1,5 @@
 {
   "emmet.showSuggestionsAsSnippets": false,
-  "emmet.preferences": {}
+  "emmet.preferences": {},
+  "cSpell.ignoreWords": ["uniquifier", "wdth"]
 }
