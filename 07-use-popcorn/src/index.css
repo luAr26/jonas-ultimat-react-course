@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --color-primary: #6741d9;
   --color-primary-light: #7950f2;
@@ -337,6 +339,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.expand-text-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background-color: #f7f7f7;
+  font-size: 1.6rem;
 }
 
 /*
