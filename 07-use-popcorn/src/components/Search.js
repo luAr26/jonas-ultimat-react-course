@@ -1,8 +1,7 @@
 /** @format */
 
-import { useState } from "react";
-const Search = () => {
-  const [query, setQuery] = useState("");
+// import { useState } from "react";
+const Search = ({ query, setQuery }) => {
   return (
     <>
       <input
