@@ -18,6 +18,9 @@ function App() {
   useEffect(() => {
     const getConversionRates = async () => {
       if (fromCurrency === toCurrency) return setResult(amount);
+      if (amount === "") return setResult(0);
+      if (isNaN(Number(amount))) return setResult("Invalid amount.");
+
       try {
         setError(null);
         setIsLoading(true);
@@ -48,6 +51,7 @@ function App() {
           id='amount'
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          disabled={isLoading}
         />
       </div>
 
@@ -58,6 +62,7 @@ function App() {
           id='from'
           value={fromCurrency}
           onChange={(e) => setFromCurrency(e.target.value)}
+          disabled={isLoading}
         >
           <option value='USD'>USD</option>
           <option value='EUR'>EUR</option>
@@ -72,6 +77,7 @@ function App() {
           id='to'
           value={toCurrency}
           onChange={(e) => setToCurrency(e.target.value)}
+          disabled={isLoading}
         >
           <option value='USD'>USD</option>
           <option value='EUR'>EUR</option>
