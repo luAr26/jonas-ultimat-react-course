@@ -1,7 +1,24 @@
 /** @format */
 
-// import { useState } from "react";
+import { useEffect, useRef } from "react";
 const Search = ({ query, setQuery }) => {
+  const inputElement = useRef(null);
+
+  useEffect(() => {
+    console.log(inputElement.current);
+    const callback = (e) => {
+      if (document.activeElement === inputElement.current) return;
+
+      if (e.code === "Enter") {
+        inputElement.current.focus();
+        setQuery("");
+      }
+    };
+    document.addEventListener("keydown", callback);
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, [setQuery]);
   return (
     <>
       <input
@@ -12,6 +29,7 @@ const Search = ({ query, setQuery }) => {
         onChange={(e) => setQuery(e.target.value)}
         id='search'
         name='search'
+        ref={inputElement}
       />
     </>
   );
