@@ -16,15 +16,11 @@ import { omdbAPIKey } from "./omdbAPI";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  // const [watched, setWatched] = useState([]);
-  const [watched, setWatched] = useState(() => {
-    const storedValue = localStorage.getItem("watched");
-    return storedValue ? JSON.parse(storedValue) : [];
-  });
 
   const handleCloseMovie = () => setSelectedId(null);
 
@@ -46,9 +42,19 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
+  // useEffect(() => {
+  //   console.log("After initial render.");
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("After every render.");
+  // });
+
+  // useEffect(() => {
+  //   console.log("D");
+  // }, [query]);
+
+  // console.log("During render.");
 
   useEffect(() => {
     const controller = new AbortController();
@@ -97,6 +103,7 @@ function App() {
       </Navbar>
       <Main>
         <Box>
+          {/* {isLoading ? <Loader /> : <MovieList movies={movies} />} */}
           {isLoading && <Loader />}
           {!isLoading && !error && (
             <MovieList movies={movies} onSelectMovie={handleSelectMovie} />
