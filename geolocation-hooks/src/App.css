@@ -1,0 +1,28 @@
+/** @format */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  padding-top: 5rem;
+}
+
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
