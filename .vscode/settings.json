@@ -1,5 +1,12 @@
 {
   "emmet.showSuggestionsAsSnippets": false,
   "emmet.preferences": {},
-  "cSpell.ignoreWords": ["noreferrer", "omdb", "pravatar", "uniquifier", "wdth"]
+  "cSpell.ignoreWords": [
+    "noreferrer",
+    "omdb",
+    "pravatar",
+    "uniquifier",
+    "wdth",
+    "weathercode"
+  ]
 }
