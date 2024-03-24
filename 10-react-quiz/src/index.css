@@ -1,3 +1,5 @@
+/** @format */
+
 :root {
   --color-darkest: #343a40;
   --color-dark: #495057;
@@ -164,6 +166,18 @@ progress {
 .btn-option.wrong {
   background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
+  color: var(--color-darkest);
+}
+
+.btn-option.wrong:hover {
+  color: var(--color-light);
+}
+
+.btn-option.correct[disabled]:hover {
+  color: var(--color-light);
+}
+
+.btn-option.wrong[disabled]:hover {
   color: var(--color-darkest);
 }
 

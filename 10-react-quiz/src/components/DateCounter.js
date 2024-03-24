@@ -3,6 +3,7 @@
 import { useReducer } from "react";
 
 const initialState = { count: 0, step: 1 };
+
 function reducer(currentState, action) {
   console.log(currentState, action);
   const { type, payload } = action;
@@ -45,35 +46,35 @@ function DateCounter() {
 
   const { count, step } = state;
 
-  // This mutates the date object.
+  // This mutates the date object. - this is derived state
   const date = new Date();
   date.setDate(date.getDate() + count);
 
-  const dec = function () {
-    // setCount((count) => count - 1);
-    // setCount((count) => count - step);
-    dispatch({ type: "DECREMENT" });
-  };
+  // const dec = function () {
+  //   // setCount((count) => count - 1);
+  //   // setCount((count) => count - step);
+  //   dispatch({ type: "DECREMENT" });
+  // };
 
-  const inc = function () {
-    // setCount((count) => count + 1);
-    // setCount((count) => count + step);
-    dispatch({ type: "INCREMENT" });
-  };
+  // const inc = function () {
+  //   // setCount((count) => count + 1);
+  //   // setCount((count) => count + step);
+  //   dispatch({ type: "INCREMENT" });
+  // };
 
-  const defineCount = function (e) {
-    // setCount(Number(e.target.value));
-    dispatch({ type: "SET_COUNT", payload: Number(e.target.value) });
-  };
+  // const defineCount = function (e) {
+  //   // setCount(Number(e.target.value));
+  //   dispatch({ type: "SET_COUNT", payload: Number(e.target.value) });
+  // };
 
-  const defineStep = function (e) {
-    // setStep(Number(e.target.value));
-    dispatch({ type: "SET_STEP", payload: Number(e.target.value) });
-  };
+  // const defineStep = function (e) {
+  //   // setStep(Number(e.target.value));
+  //   dispatch({ type: "SET_STEP", payload: Number(e.target.value) });
+  // };
 
-  const reset = function () {
-    dispatch({ type: "RESET" });
-  };
+  // const reset = function () {
+  //   dispatch({ type: "RESET" });
+  // };
 
   return (
     <div className='counter'>
@@ -83,21 +84,40 @@ function DateCounter() {
           min='0'
           max='10'
           value={step}
-          onChange={defineStep}
+          onChange={(e) => {
+            dispatch({ type: "SET_STEP", payload: Number(e.target.value) });
+          }}
         />
         <span>{step}</span>
       </div>
 
       <div>
-        <button onClick={dec}>-</button>
-        <input value={count} onChange={defineCount} />
-        <button onClick={inc}>+</button>
+        <button
+          onClick={() => {
+            dispatch({ type: "DECREMENT" });
+          }}
+        >
+          -
+        </button>
+        <input
+          value={count}
+          onChange={(e) => {
+            dispatch({ type: "SET_COUNT", payload: Number(e.target.value) });
+          }}
+        />
+        <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
       </div>
 
       <p>{date.toDateString()}</p>
 
       <div>
-        <button onClick={reset}>Reset</button>
+        <button
+          onClick={() => {
+            dispatch({ type: "RESET" });
+          }}
+        >
+          Reset
+        </button>
       </div>
     </div>
   );
