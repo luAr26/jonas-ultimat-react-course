@@ -7,6 +7,7 @@ const initialState = {
   balance: 0,
   loan: 0,
   accountIsOpen: false,
+  activeLoan: 0,
 };
 
 function reducer(currentState, action) {
@@ -18,7 +19,8 @@ function reducer(currentState, action) {
     case "withdraw":
       return { ...currentState, balance: currentState.balance - 50 };
     case "requestLoan":
-      return { ...currentState, loan: currentState.loan + 5000 };
+      if (currentState.activeLoan === 1) return { ...currentState };
+      return { ...currentState, loan: currentState.loan + 5000, activeLoan: 1 };
     case "payLoan":
       return {
         ...currentState,
@@ -27,6 +29,8 @@ function reducer(currentState, action) {
       };
 
     case "closeAccount":
+      if (currentState.balance > 0 || currentState.loan > 0)
+        return { ...currentState };
       return { ...initialState };
     default:
       throw new Error("Invalid action type");
@@ -76,7 +80,7 @@ function App() {
       <p>
         <button
           onClick={() => dispatch({ type: "payLoan" })}
-          disabled={!accountIsOpen || balance < loan}
+          disabled={!accountIsOpen || balance < loan || loan === 0}
         >
           Pay loan
         </button>
