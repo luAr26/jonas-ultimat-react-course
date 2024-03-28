@@ -1,0 +1,59 @@
+/** @format */
+
+import PropTypes from "prop-types";
+import styles from "./CountryList.module.css";
+
+import Spinner from "./Spinner";
+import CountryItem from "./CountryItem";
+import Message from "./Message";
+
+function CountryList({ cities, isLoading }) {
+  if (isLoading) return <Spinner />;
+
+  if (!cities.length)
+    return (
+      <Message message='Add your first city by clicking on a city on the map' />
+    );
+
+  console.log(cities);
+
+  // const countries = [];
+  const countries = cities.reduce((arr, city) => {
+    if (!arr.map((el) => el.country).includes(city.country)) {
+      return [
+        ...arr,
+        { country: city.country, emoji: city.emoji, id: city.id },
+      ];
+    } else {
+      return arr;
+    }
+  }, []);
+
+  return (
+    <ul className={`no-scroll ${styles.countryList}`}>
+      {countries.map((country) => (
+        <CountryItem key={country.id} country={country} />
+      ))}
+    </ul>
+  );
+}
+
+CountryList.propTypes = {
+  cities: PropTypes.arrayOf(
+    PropTypes.shape({
+      cityName: PropTypes.string,
+      country: PropTypes.string,
+      emoji: PropTypes.string,
+      date: PropTypes.string,
+      notes: PropTypes.string,
+      position: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number,
+      }),
+      id: PropTypes.number,
+    })
+  ),
+  isLoading: PropTypes.bool,
+};
+
+export default CountryList;
