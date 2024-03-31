@@ -1,118 +1,91 @@
-import { useEffect, useState } from "react";
-import { faker } from "@faker-js/faker";
+/** @format */
 
-function createRandomPost() {
-  return {
-    title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
-    body: faker.hacker.phrase(),
-  };
-}
+import { useState } from "react";
+import { createRandomPost } from "./utils";
+import { PostProvider, usePosts } from "./PostProvider";
 
 function App() {
-  const [posts, setPosts] = useState(() =>
-    Array.from({ length: 30 }, () => createRandomPost())
-  );
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isFakeDark, setIsFakeDark] = useState(false);
-
-  // Derived state. These are the posts that will actually be displayed
-  const searchedPosts =
-    searchQuery.length > 0
-      ? posts.filter((post) =>
-          `${post.title} ${post.body}`
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        )
-      : posts;
-
-  function handleAddPost(post) {
-    setPosts((posts) => [post, ...posts]);
-  }
-
-  function handleClearPosts() {
-    setPosts([]);
-  }
-
-  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
-  useEffect(
-    function () {
-      document.documentElement.classList.toggle("fake-dark-mode");
-    },
-    [isFakeDark]
-  );
-
   return (
-    <section>
-      <button
-        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-        className="btn-fake-dark-mode"
-      >
-        {isFakeDark ? "☀️" : "🌙"}
-      </button>
-
-      <Header
-        posts={searchedPosts}
-        onClearPosts={handleClearPosts}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <Main posts={searchedPosts} onAddPost={handleAddPost} />
-      <Archive onAddPost={handleAddPost} />
-      <Footer />
-    </section>
+    // 2) Wrap the components that need the context in the Provider
+    <PostProvider>
+      <section>
+        <DarkModeToggle />
+        <Header />
+        <Main />
+        <Archive />
+        <Footer />
+      </section>
+    </PostProvider>
   );
 }
 
-function Header({ posts, onClearPosts, searchQuery, setSearchQuery }) {
+function DarkModeToggle() {
+  // 3) Consume the context in the components that need it
+  const { darkModeToggle, isFakeDark } = usePosts();
+  return (
+    <button className='btn-fake-dark-mode' onClick={darkModeToggle}>
+      {isFakeDark ? "☀️" : "🌙"}
+    </button>
+  );
+}
+
+function Header() {
+  // 3) Consume the context in the components that need it
+  const { onClearPosts } = usePosts();
+
   return (
     <header>
       <h1>
         <span>⚛️</span>The Atomic Blog
       </h1>
       <div>
-        <Results posts={posts} />
-        <SearchPosts
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-        />
+        <Results />
+        <SearchPosts />
         <button onClick={onClearPosts}>Clear posts</button>
       </div>
     </header>
   );
 }
 
-function SearchPosts({ searchQuery, setSearchQuery }) {
+function SearchPosts() {
+  // 3) Consume the context in the components that need it
+  const { searchQuery, setSearchQuery } = usePosts();
   return (
     <input
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      placeholder="Search posts..."
+      placeholder='Search posts...'
     />
   );
 }
 
-function Results({ posts }) {
+function Results() {
+  // 3) Consume the context in the components that need it
+  const { posts } = usePosts();
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main({ posts, onAddPost }) {
+function Main() {
   return (
     <main>
-      <FormAddPost onAddPost={onAddPost} />
-      <Posts posts={posts} />
+      <FormAddPost />
+      <Posts />
     </main>
   );
 }
 
-function Posts({ posts }) {
+function Posts() {
   return (
     <section>
-      <List posts={posts} />
+      <List />
     </section>
   );
 }
 
-function FormAddPost({ onAddPost }) {
+function FormAddPost() {
+  // 3) Consume the context in the components that need it
+  const { onAddPost } = usePosts();
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -129,19 +102,21 @@ function FormAddPost({ onAddPost }) {
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Post title"
+        placeholder='Post title'
       />
       <textarea
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        placeholder="Post body"
+        placeholder='Post body'
       />
       <button>Add post</button>
     </form>
   );
 }
 
-function List({ posts }) {
+function List() {
+  // 3) Consume the context in the components that need it
+  const { posts } = usePosts();
   return (
     <ul>
       {posts.map((post, i) => (
@@ -154,7 +129,7 @@ function List({ posts }) {
   );
 }
 
-function Archive({ onAddPost }) {
+function Archive() {
   // Here we don't need the setter function. We're only using state to store these posts because the callback function passed into useState (which generates the posts) is only called once, on the initial render. So we use this trick as an optimization technique, because if we just used a regular variable, these posts would be re-created on every render. We could also move the posts outside the components, but I wanted to show you this trick 😉
   const [posts] = useState(() =>
     // 💥 WARNING: This might make your computer slow! Try a smaller `length` first
@@ -162,6 +137,9 @@ function Archive({ onAddPost }) {
   );
 
   const [showArchive, setShowArchive] = useState(false);
+
+  // 3) Consume the context in the components that need it
+  const { onAddPost } = usePosts();
 
   return (
     <aside>
