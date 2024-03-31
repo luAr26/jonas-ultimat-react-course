@@ -36,7 +36,7 @@ CityList.propTypes = {
         lat: PropTypes.number,
         lng: PropTypes.number,
       }),
-      id: PropTypes.number,
+      id: PropTypes.string,
     })
   ),
   isLoading: PropTypes.bool,

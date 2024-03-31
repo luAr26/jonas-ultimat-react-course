@@ -16,7 +16,7 @@ CountryItem.propTypes = {
   country: PropTypes.shape({
     country: PropTypes.string,
     emoji: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.string,
   }),
 };
 

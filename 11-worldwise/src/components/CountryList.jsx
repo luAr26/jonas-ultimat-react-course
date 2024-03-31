@@ -32,7 +32,7 @@ function CountryList({ cities, isLoading }) {
   return (
     <ul className={`no-scroll ${styles.countryList}`}>
       {countries.map((country) => (
-        <CountryItem key={country.id} country={country} />
+        <CountryItem key={country} country={country} />
       ))}
     </ul>
   );
@@ -50,7 +50,7 @@ CountryList.propTypes = {
         lat: PropTypes.number,
         lng: PropTypes.number,
       }),
-      id: PropTypes.number,
+      id: PropTypes.string,
     })
   ),
   isLoading: PropTypes.bool,
