@@ -16,3 +16,8 @@ export function formatDate(date) {
     weekday: "long",
   }).format(new Date(date));
 }
+
+export function getCountryName(countryCode) {
+  let regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+  return regionNames.of(countryCode);
+}
