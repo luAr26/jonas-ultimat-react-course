@@ -25,18 +25,6 @@
       "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
       "id": "d4f7",
       "cityName": "Vijon",
       "country": "France",
@@ -46,6 +34,54 @@
       "position": {
         "lat": 46.45299704748291,
         "lng": 2.1093750000000004
+      }
+    },
+    {
+      "id": "b561",
+      "cityName": "Montederramo",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-04-08T18:50:27.881Z",
+      "notes": "Great place! :)",
+      "position": {
+        "lat": 42.22851735620852,
+        "lng": -7.492675781250001
+      }
+    },
+    {
+      "id": "e9d1",
+      "cityName": "Cateasca",
+      "country": "Romania",
+      "emoji": "🇷🇴",
+      "date": "2024-04-08T19:00:38.061Z",
+      "notes": "epic place... recommend for visits",
+      "position": {
+        "lat": 44.68427737181225,
+        "lng": 25.048828125000004
+      }
+    },
+    {
+      "id": "bad9",
+      "cityName": "Giswil",
+      "country": "Switzerland",
+      "emoji": "🇨🇭",
+      "date": "2024-03-13T20:04:06.000Z",
+      "notes": "Great place! ;)",
+      "position": {
+        "lat": 46.81509864599243,
+        "lng": 8.085937500000002
+      }
+    },
+    {
+      "id": "d92d",
+      "cityName": "Straseni",
+      "country": "Moldova",
+      "emoji": "🇲🇩",
+      "date": "2024-04-08T19:04:32.617Z",
+      "notes": "Un loc foarte frumos!",
+      "position": {
+        "lat": 47.100044694025215,
+        "lng": 28.740234375000004
       }
     }
   ]

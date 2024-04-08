@@ -26,7 +26,6 @@ function Form() {
   const [lat, lng] = useUrlPosition();
   const { createCity, isLoading } = useCities();
   const navigate = useNavigate();
-  console.log(lat, lng);
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -36,8 +35,6 @@ function Form() {
   const [geocodingError, setGeocodingError] = useState("");
 
   const emoji = convertToEmoji(country);
-
-  console.log(isLoadingGeocoding);
 
   useEffect(() => {
     if (!lat && !lng) return;
