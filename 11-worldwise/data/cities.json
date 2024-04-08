@@ -37,18 +37,6 @@
       }
     },
     {
-      "id": "b561",
-      "cityName": "Montederramo",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2024-04-08T18:50:27.881Z",
-      "notes": "Great place! :)",
-      "position": {
-        "lat": 42.22851735620852,
-        "lng": -7.492675781250001
-      }
-    },
-    {
       "id": "e9d1",
       "cityName": "Cateasca",
       "country": "Romania",
@@ -82,6 +70,18 @@
       "position": {
         "lat": 47.100044694025215,
         "lng": 28.740234375000004
+      }
+    },
+    {
+      "id": "1e25",
+      "cityName": "Saelices el Chico",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-04-08T19:12:25.191Z",
+      "notes": "nice...",
+      "position": {
+        "lat": 40.64730356252251,
+        "lng": -6.65771484375
       }
     }
   ]
