@@ -1,10 +1,6 @@
 /** @format */
-import { useQuiz } from "../hooks/useQuiz";
-import { QuizContext } from "../contexts/QuizContext";
 
-function Progress() {
-  const { index, numQuestions, maxPossiblePoints, points, answer } =
-    useQuiz(QuizContext);
+function Progress({ index, numQuestions, maxPossiblePoints, points, answer }) {
   return (
     <header className='progress'>
       <progress

@@ -1,12 +1,7 @@
 /** @format */
 
-import { useQuiz } from "../hooks/useQuiz";
-import { QuizContext } from "../contexts/QuizContext";
-
-function StartScreen() {
-  const { numQuestions, dispatch } = useQuiz(QuizContext);
+function StartScreen({ numQuestions, dispatch }) {
   const plural = numQuestions === 1 ? "" : "s";
-
   return (
     <div className='start'>
       <h2>Welcome to The React Quiz!</h2>
