@@ -18,6 +18,7 @@ function Timer() {
     }, 1000);
     return () => clearInterval(id);
   }, [dispatch]);
+
   return <div className='timer'>{`${minutes}:${seconds}`}</div>;
 }
 export default Timer;
