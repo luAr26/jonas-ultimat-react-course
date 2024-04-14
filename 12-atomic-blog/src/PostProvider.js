@@ -1,6 +1,6 @@
 /** @format */
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { createRandomPost } from "./utils";
 
 // 1) Create a new context
@@ -43,21 +43,19 @@ function PostProvider({ children }) {
     [isFakeDark]
   );
 
-  return (
-    <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onAddPost: handleAddPost,
-        onClearPosts: handleClearPosts,
-        searchQuery,
-        setSearchQuery,
-        darkModeToggle: handleDarkModeToggle,
-        isFakeDark,
-      }}
-    >
-      {children}
-    </PostContext.Provider>
-  );
+  const value = useMemo(() => {
+    return {
+      posts: searchedPosts,
+      onAddPost: handleAddPost,
+      onClearPosts: handleClearPosts,
+      searchQuery,
+      setSearchQuery,
+      darkModeToggle: handleDarkModeToggle,
+      isFakeDark,
+    };
+  }, [searchedPosts, searchQuery, isFakeDark]);
+
+  return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 }
 
 function usePosts() {

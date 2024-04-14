@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { createRandomPost } from "./utils";
 import { PostProvider, usePosts } from "./PostProvider";
+import { memo } from "react";
 
 function App() {
   return (
@@ -65,14 +66,14 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+const Main = memo(function () {
   return (
     <main>
       <FormAddPost />
       <Posts />
     </main>
   );
-}
+});
 
 function Posts() {
   return (
