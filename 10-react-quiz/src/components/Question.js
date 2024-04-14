@@ -1,11 +1,10 @@
 /** @format */
 import { useQuiz } from "../hooks/useQuiz";
-import { QuizContext } from "../contexts/QuizContext";
 
 import Options from "./Options";
 
 function Question() {
-  const { questions, index } = useQuiz(QuizContext);
+  const { questions, index } = useQuiz();
   const question = questions[index];
   const { question: questionText } = question;
   return (

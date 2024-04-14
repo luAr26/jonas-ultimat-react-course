@@ -1,10 +1,9 @@
 /** @format */
 
 import { useQuiz } from "../hooks/useQuiz";
-import { QuizContext } from "../contexts/QuizContext";
 
 function NextButton() {
-  const { dispatch, answer, index, numQuestions } = useQuiz(QuizContext);
+  const { dispatch, answer, index, numQuestions } = useQuiz();
   if (answer === null) {
     return null;
   }
