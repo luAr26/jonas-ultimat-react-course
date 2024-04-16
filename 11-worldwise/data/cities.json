@@ -83,6 +83,18 @@
         "lat": 40.64730356252251,
         "lng": -6.65771484375
       }
+    },
+    {
+      "id": "878b",
+      "cityName": "Borough of Thurrock",
+      "country": "United Kingdom",
+      "emoji": "🇬🇧",
+      "date": "2024-04-16T18:20:47.779Z",
+      "notes": "This is very beautiful",
+      "position": {
+        "lat": 51.481382896100975,
+        "lng": 0.28564453125000006
+      }
     }
   ]
 }
