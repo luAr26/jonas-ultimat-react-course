@@ -5,7 +5,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 // import reportWebVitals from './reportWebVitals';
-import "./store";
+import store from "./store";
+
+store.dispatch({
+  type: "customer/createCustomer",
+  payload: { fullName: "Raul S.", nationalID: "6730" },
+});
+
+store.dispatch({ type: "account/deposit", payload: 1000 });
+
+console.log(store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
