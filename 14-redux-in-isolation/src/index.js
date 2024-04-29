@@ -4,22 +4,25 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { Provider } from "react-redux";
 // import reportWebVitals from './reportWebVitals';
 import store from "./store";
 
-store.dispatch({
-  type: "customer/createCustomer",
-  payload: { fullName: "Raul S.", nationalID: "6730" },
-});
+// store.dispatch({
+//   type: "customer/createCustomer",
+//   payload: { fullName: "Raul S.", nationalID: "6730" },
+// });
 
-store.dispatch({ type: "account/deposit", payload: 1000 });
+// store.dispatch({ type: "account/deposit", payload: 1000 });
 
-console.log(store.getState());
+// console.log(store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
