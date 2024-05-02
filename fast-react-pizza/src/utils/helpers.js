@@ -1,3 +1,5 @@
+/** @format */
+
 export function formatCurrency(value) {
   return new Intl.NumberFormat("en", {
     style: "currency",
@@ -19,3 +21,9 @@ export function calcMinutesLeft(dateStr) {
   const d2 = new Date(dateStr).getTime();
   return Math.round((d2 - d1) / 60000);
 }
+
+// https://uibakery.io/regex-library/phone-number
+export const isValidPhone = (str) =>
+  /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
+    str
+  );
