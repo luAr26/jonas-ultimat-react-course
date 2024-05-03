@@ -6,7 +6,7 @@ import Home from "./ui/Home";
 import Menu from "./features/menu/Menu";
 import Error from "./ui/Error";
 import { loader as menuLoader } from "./features/menu/menuLoader";
-import { loader as orderLoader } from "./features/order/orderLoader";
+import { orderLoader } from "./features/order/orderLoader";
 import { action as createOrderAction } from "./features/order/action";
 import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";

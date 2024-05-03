@@ -18,8 +18,7 @@ export async function action({ request }) {
   const errors = {};
 
   if (!isValidPhone(order.phone)) {
-    errors.phone =
-      "Please enter a valid phone number. We might need to contact you about your order.";
+    errors.phone = "Please enter a valid phone number.";
   }
 
   if (Object.keys(errors).length > 0) return errors;
