@@ -2,6 +2,7 @@
 
 import { Form, useActionData, useNavigation } from "react-router-dom";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
 
 // import { useState } from "react";
 
@@ -35,6 +36,7 @@ function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   const formErrors = useActionData();
+  const username = useSelector((state) => state.user.username);
 
   return (
     <div className="p-4 py-6">
@@ -53,6 +55,7 @@ function CreateOrder() {
             name="customer"
             required
             id="first-name"
+            defaultValue={username}
           />
         </div>
 
