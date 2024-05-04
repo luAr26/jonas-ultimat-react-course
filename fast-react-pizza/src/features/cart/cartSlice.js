@@ -12,7 +12,6 @@ const cartSlice = createSlice({
     addItem(state, action) {
       // payload = newItem
       state.cart.push(action.payload);
-      console.log("Pizza added.");
     },
     deleteItem(state, action) {
       // payload = pizzaId
