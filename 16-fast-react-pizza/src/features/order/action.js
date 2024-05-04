@@ -16,7 +16,6 @@ export async function action({ request }) {
     cart,
     priority: data.priority === "true",
   };
-  console.log(order);
 
   const errors = {};
 
