@@ -15,7 +15,7 @@ import FormRow from "../../ui/FormRow";
 import Row from "../../ui/Row";
 import { useState } from "react";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id, ...editValues } = cabinToEdit;
   const [editId, setEditId] = useState(id);
   const isEditSession = Boolean(editId);
@@ -49,6 +49,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           onSuccess: (data) => {
             console.log(data);
             reset();
+            onCloseModal?.();
           },
         }
       );
@@ -60,7 +61,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={onCloseModal ? "modal" : "regular"}
+    >
       <FormRow label='Cabin name' $error={errors?.name?.message}>
         <Input
           type='text'
@@ -131,7 +135,11 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         type='horizontal'
         style={{ marginTop: "24px", justifyContent: "flex-end", gap: "12px" }}
       >
-        <Button $variation='secondary' type='reset'>
+        <Button
+          $variation='secondary'
+          type='reset'
+          onClick={() => onCloseModal?.()}
+        >
           Cancel
         </Button>
         <Button disabled={isWorking}>
@@ -144,6 +152,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
 
 CreateCabinForm.propTypes = {
   cabinToEdit: PropTypes.object,
+  onCloseModal: PropTypes.func,
 };
 
 export default CreateCabinForm;
