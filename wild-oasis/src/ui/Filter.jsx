@@ -52,11 +52,13 @@ function Filter({ filterField, options }) {
       {options.map((option) => {
         const { value, label } = option;
         const active = currentFilterValue === value ? "active" : "";
+
         return (
           <FilterButton
             key={value}
             onClick={() => handleClick(value)}
             $active={active}
+            disabled={value === currentFilterValue}
           >
             {label}
           </FilterButton>
