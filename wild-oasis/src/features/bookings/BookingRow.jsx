@@ -1,3 +1,6 @@
+/** @format */
+
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { format, isToday } from "date-fns";
 
@@ -48,6 +51,8 @@ function BookingRow({
     cabins: { name: cabinName },
   },
 }) {
+  console.log(bookingId, created_at, numGuests);
+
   const statusToTagName = {
     unconfirmed: "blue",
     "checked-in": "green",
@@ -82,5 +87,9 @@ function BookingRow({
     </Table.Row>
   );
 }
+
+BookingRow.propTypes = {
+  booking: PropTypes.object.isRequired,
+};
 
 export default BookingRow;
