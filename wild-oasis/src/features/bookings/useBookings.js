@@ -19,14 +19,12 @@ export function useBookings() {
   const [field, direction] = sortByRaw.split("-");
   const sortBy = { field, direction };
 
-  const {
-    isLoading,
-    data: bookings,
-    error,
-  } = useQuery({
-    queryKey: ["bookings", filter, sortBy],
-    queryFn: () => getBookings({ filter, sortBy }),
-  });
+  // Pagination
+  const page = Number(searchParams.get("page")) || 1;
 
-  return { isLoading, error, bookings };
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["bookings", filter, sortBy, page],
+    queryFn: () => getBookings({ filter, sortBy, page }),
+  });
+  return { isLoading, error, data };
 }
