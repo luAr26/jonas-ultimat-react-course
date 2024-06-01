@@ -78,8 +78,6 @@ const Pagination = ({ count }) => {
     setSearchParams(searchParams);
   };
 
-  console.log(searchParams.get("page"));
-
   if (pageCount <= 1) return null;
 
   return (

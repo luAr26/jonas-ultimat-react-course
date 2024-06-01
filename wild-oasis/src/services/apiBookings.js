@@ -5,8 +5,6 @@ import supabase from "./supabase";
 import { PAGE_SIZE } from "../utils/constants";
 
 export async function getBookings({ filter, sortBy, page }) {
-  console.log(sortBy);
-
   let query = supabase
     .from("bookings")
     .select(
@@ -38,8 +36,6 @@ export async function getBookings({ filter, sortBy, page }) {
     console.error(error);
     throw new Error("Bookings could not be loaded.");
   }
-
-  console.log(count);
 
   return { data, count };
 }
