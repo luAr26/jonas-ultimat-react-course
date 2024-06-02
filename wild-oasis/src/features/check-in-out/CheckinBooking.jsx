@@ -8,10 +8,14 @@ import Heading from "../../ui/Heading";
 import ButtonGroup from "../../ui/ButtonGroup";
 import Button from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
+import Checkbox from "../../ui/Checkbox";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { useBooking } from "../bookings/useBooking";
 import Spinner from "../../ui/Spinner";
+import { useEffect, useState } from "react";
+import { formatCurrency } from "../../utils/helpers";
+import { useCheckIn } from "./useCheckIn";
 
 const Box = styled.div`
   /* Box */
@@ -22,10 +26,19 @@ const Box = styled.div`
 `;
 
 function CheckinBooking() {
-  const moveBack = useMoveBack();
   const { booking, isLoading, error } = useBooking();
+  const [confirmPaid, setConfirmPaid] = useState(false);
+  const moveBack = useMoveBack();
+  const { checkIn, isCheckingIn } = useCheckIn();
 
-  function handleCheckin() {}
+  useEffect(() => {
+    setConfirmPaid(booking?.isPaid ?? false);
+  }, [booking]);
+
+  function handleCheckin() {
+    if (!confirmPaid) return;
+    checkIn(booking.id);
+  }
 
   if (isLoading) return <Spinner />;
 
@@ -47,12 +60,24 @@ function CheckinBooking() {
         <Heading as='h1'>Check in booking #{bookingId}</Heading>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
-      <Box />
 
       <BookingDataBox booking={booking} />
+      <Box>
+        <Checkbox
+          onChange={() => setConfirmPaid((prev) => !prev)}
+          id='confirm'
+          checked={confirmPaid}
+          disabled={confirmPaid || isCheckingIn}
+        >
+          I confirm that {guests.fullName} has paid the total amount of{" "}
+          {formatCurrency(totalPrice)}.
+        </Checkbox>
+      </Box>
 
       <ButtonGroup>
-        <Button onClick={handleCheckin}>Check in booking #{bookingId}</Button>
+        <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
+          Check in booking #{bookingId}
+        </Button>
         <Button $variation='secondary' onClick={moveBack}>
           Back
         </Button>

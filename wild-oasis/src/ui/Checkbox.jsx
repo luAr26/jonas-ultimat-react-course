@@ -1,3 +1,6 @@
+/** @format */
+
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledCheckbox = styled.div`
@@ -29,7 +32,7 @@ function Checkbox({ checked, onChange, disabled = false, id, children }) {
   return (
     <StyledCheckbox>
       <input
-        type="checkbox"
+        type='checkbox'
         id={id}
         checked={checked}
         onChange={onChange}
@@ -39,5 +42,13 @@ function Checkbox({ checked, onChange, disabled = false, id, children }) {
     </StyledCheckbox>
   );
 }
+
+Checkbox.propTypes = {
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default Checkbox;
