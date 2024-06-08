@@ -1,3 +1,5 @@
+/** @format */
+
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
@@ -19,13 +21,13 @@ function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label="Password (min 8 characters)"
+        label='New password (min 8 chars)'
         error={errors?.password?.message}
       >
         <Input
-          type="password"
-          id="password"
-          autoComplete="current-password"
+          type='password'
+          id='password'
+          autoComplete='current-password'
           disabled={isUpdating}
           {...register("password", {
             required: "This field is required",
@@ -38,13 +40,13 @@ function UpdatePasswordForm() {
       </FormRow>
 
       <FormRow
-        label="Confirm password"
+        label='Confirm new password'
         error={errors?.passwordConfirm?.message}
       >
         <Input
-          type="password"
-          autoComplete="new-password"
-          id="passwordConfirm"
+          type='password'
+          autoComplete='new-password'
+          id='passwordConfirm'
           disabled={isUpdating}
           {...register("passwordConfirm", {
             required: "This field is required",
@@ -54,7 +56,7 @@ function UpdatePasswordForm() {
         />
       </FormRow>
       <FormRow>
-        <Button onClick={reset} type="reset" variation="secondary">
+        <Button onClick={reset} type='reset' $variation='secondary'>
           Cancel
         </Button>
         <Button disabled={isUpdating}>Update password</Button>
