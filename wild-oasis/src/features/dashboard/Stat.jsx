@@ -1,3 +1,6 @@
+/** @format */
+
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 const StyledStat = styled.div`
@@ -56,5 +59,12 @@ function Stat({ icon, title, value, color }) {
     </StyledStat>
   );
 }
+
+Stat.propTypes = {
+  icon: propTypes.element,
+  title: propTypes.string,
+  value: propTypes.oneOfType([propTypes.string, propTypes.number]),
+  color: propTypes.string,
+};
 
 export default Stat;
