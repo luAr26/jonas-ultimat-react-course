@@ -46,7 +46,6 @@ function SalesChart({ bookings, numDays }) {
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
   });
-  console.log(allDates);
 
   const data = allDates.map((date) => {
     return {
