@@ -1,5 +1,9 @@
 /** @format */
 
 export default function Page() {
-  return <h1>Hello, Next.js!!!</h1>;
+  return (
+    <div>
+      <h1>The Wild Oasis. Welcome to paradise.</h1>
+    </div>
+  );
 }
