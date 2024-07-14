@@ -5,6 +5,7 @@
 import { auth, signIn, signOut } from "@/app/_lib/auth";
 import { supabase } from "./supabase";
 import { revalidatePath } from "next/cache";
+import { getBookings } from "@/app/_lib/data-service";
 
 export async function updateGuest(formData) {
   const session = await auth();
