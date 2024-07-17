@@ -4,11 +4,12 @@
 import { useReservation } from "@/app/_components/ReservationContext";
 import { differenceInDays } from "date-fns";
 import { createBooking } from "@/app/_lib/actions";
+import FormButton from "./FormButton";
 
 function ReservationForm({ cabin, user }) {
   const { name, image } = user;
   const { maxCapacity, regularPrice, discount, id } = cabin;
-  const { range } = useReservation();
+  const { range, resetRange } = useReservation();
   const startDate = range.from;
   const endDate = range.to;
 
@@ -44,7 +45,11 @@ function ReservationForm({ cabin, user }) {
       </div>
 
       <form
-        action={createBookingWithData}
+        // action={createBookingWithData}
+        action={async (formData) => {
+          await createBookingWithData(formData);
+          resetRange();
+        }}
         className='flex flex-col gap-5 px-16 py-10 text-lg bg-primary-900'
       >
         <div className='space-y-2'>
@@ -79,11 +84,13 @@ function ReservationForm({ cabin, user }) {
         </div>
 
         <div className='flex items-center justify-end gap-6'>
-          <p className='text-base text-primary-300'>Start by selecting dates</p>
-
-          <button className='px-8 py-4 font-semibold transition-all bg-accent-500 text-primary-800 hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
-            Reserve now
-          </button>
+          {!(startDate && endDate) ? (
+            <p className='text-base text-primary-300'>
+              Start by selecting dates
+            </p>
+          ) : (
+            <FormButton pendingText={"Updating..."}>Reserve now</FormButton>
+          )}
         </div>
       </form>
     </div>
